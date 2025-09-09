@@ -40,8 +40,8 @@ onMounted(() => {
   if (savedTheme) {
     isLightTheme.value = savedTheme === 'light'
   } else {
-    // Default to system preference
-    isLightTheme.value = window.matchMedia('(prefers-color-scheme: light)').matches
+    // Default to dark theme
+    isLightTheme.value = false
   }
 
   // Apply theme class to root element on mount

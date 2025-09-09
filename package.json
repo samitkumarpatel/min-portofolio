@@ -1,5 +1,5 @@
 {
-  "name": "min-portfolio",
+  "name": "min-portofolio",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "build-only": "vite build --mode production --base=/min-portfolio/",
+    "build-only": "vite build --mode production --base=/min-portofolio/",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/"

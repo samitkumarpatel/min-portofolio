@@ -40,7 +40,7 @@
       <div class="about-content">
         <div class="about-text">
           <p class="about-description">
-            With over 18 years in IT, I specialize in DevOps Engineering, Cloud-Native Platforms,
+            With over 15+ years in IT, I specialize in DevOps Engineering, Cloud-Native Platforms,
             and Full-Stack Development across domains like Transportation & Logistics, Master Data
             Management (MDM), and Finance. My work bridges the gap between infrastructure and
             software engineering, enabling scalable, secure, and automated solutions.

@@ -9,7 +9,7 @@
             <span class="title-subtitle font-caption">Lead Engineer | DevOps | Cloud-Native</span>
           </h1>
           <p class="hero-description font-body">
-            Full-Stack Programmer specializing in Java, Go, Python, React, Vue with over 18 years of
+            Full-Stack Programmer specializing in Java, Go, Python, React, Vue with over 15+ years of
             experience in IT infrastructure and software engineering.
           </p>
           <div class="hero-location">

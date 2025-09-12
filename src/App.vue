@@ -3,176 +3,148 @@
     <!-- Theme Toggle -->
     <ThemeToggle />
     
-    <!-- Header Section -->
-    <header class="header">
-      <div class="container">
-        <div class="header-content">
-          <img :src="portfolioData.personal.avatar" :alt="portfolioData.personal.name" class="avatar">
-          <h1 class="name">{{ portfolioData.personal.name }}</h1>
-          <p class="title">{{ portfolioData.personal.title }}</p>
-          <p class="location">{{ portfolioData.personal.location }}</p>
-          
-          <div class="contact-info">
-            <div class="contact-item">
-              <span>📞</span>
-              <span>{{ portfolioData.personal.contact.phone }}</span>
-            </div>
-            <div class="contact-item">
-              <span>✉️</span>
-              <a :href="`mailto:${portfolioData.personal.contact.email}`">
-                {{ portfolioData.personal.contact.email }}
-              </a>
-            </div>
-            <div class="contact-item">
-              <span>💼</span>
-              <a :href="portfolioData.personal.contact.linkedin" target="_blank" rel="noopener noreferrer">
-                LinkedIn Profile
-              </a>
-            </div>
+    <!-- Resume Layout -->
+    <div class="resume-container">
+      <!-- Left Sidebar -->
+      <aside class="sidebar">
+        <!-- Profile Image -->
+        <div class="profile-section">
+          <img :src="portfolioData.personal.avatar" :alt="portfolioData.personal.name" class="profile-image">
+        </div>
+
+        <!-- Contact Information -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Contact Information</h3>
+          <div class="contact-item">
+            <span class="contact-icon">🏠</span>
+            <span>{{ portfolioData.personal.location }}</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <span>{{ portfolioData.personal.contact.phone }}</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <a :href="`mailto:${portfolioData.personal.contact.email}`">
+              {{ portfolioData.personal.contact.email }}
+            </a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">💼</span>
+            <a :href="portfolioData.personal.contact.linkedin" target="_blank" rel="noopener noreferrer">
+              LinkedIn Profile
+            </a>
           </div>
         </div>
-      </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="container">
-        <!-- Summary Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Professional Summary</h2>
-            <p class="section-subtitle">15+ years of expertise in DevOps, Cloud-Native platforms, and Full-Stack Development</p>
+        <!-- Education -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Education</h3>
+          <div class="education-item">
+            <h4 class="education-degree">{{ portfolioData.education.degree }}</h4>
+            <p class="education-institution">{{ portfolioData.education.institution }}</p>
+            <p class="education-location">{{ portfolioData.education.period }}</p>
           </div>
-          <div class="section-content">
-            <p class="summary-text">{{ portfolioData.summary.description }}</p>
-            <p class="summary-text">{{ portfolioData.summary.dailyFocus }}</p>
-            <p class="summary-text">{{ portfolioData.summary.genAI }}</p>
+        </div>
+
+        <!-- Certifications -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Certifications</h3>
+          <ul class="certifications-list">
+            <li v-for="cert in portfolioData.certifications" :key="cert">
+              {{ cert }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Languages -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Languages</h3>
+          <ul class="languages-list">
+            <li v-for="language in portfolioData.languages" :key="language">
+              {{ language }}
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header with Name and Summary -->
+        <header class="resume-header">
+          <h1 class="resume-name">{{ portfolioData.personal.name }}</h1>
+          <div class="summary-content">
+            <p>{{ portfolioData.summary.description }}</p>
+            <p>{{ portfolioData.summary.dailyFocus }}</p>
+            <p>{{ portfolioData.summary.genAI }}</p>
           </div>
-        </section>
+        </header>
 
         <!-- Areas of Expertise -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Areas of Expertise</h2>
-            <p class="section-subtitle">Core competencies and technical specializations</p>
-          </div>
-          <div class="section-content">
-            <div class="expertise-grid">
-              <div 
-                v-for="expertise in portfolioData.expertise" 
-                :key="expertise.category"
-                class="expertise-item"
-              >
-                <h3 class="expertise-category">{{ expertise.category }}</h3>
-                <p class="expertise-description">{{ expertise.description }}</p>
+        <section class="content-section">
+          <h2 class="section-title">Areas of Expertise</h2>
+          <ul class="expertise-list">
+            <li v-for="expertise in portfolioData.expertise" :key="expertise.category">
+              <strong>{{ expertise.category }}:</strong> {{ expertise.description }}
+            </li>
+          </ul>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="content-section">
+          <h2 class="section-title">Work Experience</h2>
+          <div 
+            v-for="(experience, index) in portfolioData.experience" 
+            :key="index"
+            class="experience-item"
+          >
+            <div class="experience-header">
+              <h3 class="job-title">{{ experience.position }}</h3>
+              <h4 class="company-name">{{ experience.company }}</h4>
+              <div class="job-meta">
+                <span>{{ experience.location }}</span> • 
+                <span>{{ experience.period }}</span>
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="section-subtitle">Career progression and key achievements</p>
-          </div>
-          <div class="section-content">
-            <div 
-              v-for="(experience, index) in portfolioData.experience" 
-              :key="index"
-              class="experience-item"
-            >
-              <div class="experience-header">
-                <h3 class="experience-company">{{ experience.company }}</h3>
-                <h4 class="experience-position">{{ experience.position }}</h4>
-                <div class="experience-meta">
-                  <span>{{ experience.location }}</span> • 
-                  <span>{{ experience.period }}</span>
-                </div>
-              </div>
-              <ul class="responsibilities">
-                <li v-for="(responsibility, idx) in experience.responsibilities" :key="idx">
-                  {{ responsibility }}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Technical Skills</h2>
-            <p class="section-subtitle">Technologies, tools, and frameworks</p>
-          </div>
-          <div class="section-content">
-            <div class="skills-grid">
-              <div v-for="(skills, category) in portfolioData.skills" :key="category" class="skill-category">
-                <h3 class="skill-category-title">{{ formatCategoryName(category) }}</h3>
-                <div class="skill-tags">
-                  <span 
-                    v-for="skill in skills" 
-                    :key="skill"
-                    class="skill-tag"
-                  >
-                    {{ skill }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Education Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Education</h2>
-            <p class="section-subtitle">Academic background and qualifications</p>
-          </div>
-          <div class="section-content">
-            <div class="education-item">
-              <h3 class="education-institution">{{ portfolioData.education.institution }}</h3>
-              <p class="education-degree">{{ portfolioData.education.degree }}</p>
-              <p class="education-period">{{ portfolioData.education.period }}</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Certifications</h2>
-            <p class="section-subtitle">Professional certifications and achievements</p>
-          </div>
-          <div class="section-content">
-            <ul class="certifications-list">
-              <li v-for="cert in portfolioData.certifications" :key="cert">
-                {{ cert }}
+            <ul class="responsibilities">
+              <li v-for="(responsibility, idx) in experience.responsibilities" :key="idx">
+                {{ responsibility }}
               </li>
             </ul>
           </div>
         </section>
 
-        <!-- Languages Section -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Languages</h2>
-            <p class="section-subtitle">Language proficiency</p>
-          </div>
-          <div class="section-content">
-            <div class="languages-list">
-              <span 
-                v-for="language in portfolioData.languages" 
-                :key="language"
-                class="language-tag"
-              >
-                {{ language }}
-              </span>
+        <!-- Skills -->
+        <section class="content-section">
+          <h2 class="section-title">Skills</h2>
+          <div class="skills-content">
+            <div v-for="(skills, category) in portfolioData.skills" :key="category" class="skill-category">
+              <h3 class="skill-category-title">{{ formatCategoryName(category) }}</h3>
+              <div class="skill-tags">
+                <span 
+                  v-for="skill in skills" 
+                  :key="skill"
+                  class="skill-tag"
+                >
+                  {{ skill }}
+                </span>
+              </div>
             </div>
           </div>
         </section>
-      </div>
-    </main>
+
+        <!-- Interests and Hobbies -->
+        <section class="content-section">
+          <h2 class="section-title">Interests and Hobbies</h2>
+          <ul class="interests-list">
+            <li>Cloud-Native Technologies and DevOps Practices</li>
+            <li>Generative AI and Machine Learning Applications</li>
+            <li>Open Source Contribution and Community Building</li>
+            <li>Continuous Learning and Technology Innovation</li>
+          </ul>
+        </section>
+      </main>
+    </div>
   </div>
 </template>
 

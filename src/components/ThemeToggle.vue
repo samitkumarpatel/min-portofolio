@@ -72,7 +72,7 @@ export default {
 .theme-toggle:hover {
   transform: scale(1.1);
   box-shadow: var(--shadow-large);
-  border-color: var(--accent-color);
+  border-color: var(--border-color);
 }
 
 .theme-icon {
@@ -93,7 +93,7 @@ export default {
 
 .dark-theme .theme-toggle:hover {
   background: var(--bg-tertiary);
-  border-color: var(--accent-color);
+  border-color: var(--border-color);
   box-shadow: var(--shadow-large), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
